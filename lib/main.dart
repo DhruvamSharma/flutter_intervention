@@ -7,7 +7,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  MaterialColor colorCustom = getColor(0xFF3e51b5);
+  final MaterialColor colorCustom = getColor(0xFF3e51b5);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

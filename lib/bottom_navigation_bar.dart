@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gamezop_mock/bloc.dart';
-import 'package:gamezop_mock/utils/Colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   @override
@@ -10,22 +9,21 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   int _index = 0;
-  Color _selectedIndexColor = getColor(0xFF3e51b5);
   Color _backgroundColor = Colors.white;
   List<NavigationItem> _navigationItems = <NavigationItem> [
-    NavigationItem(icon: Icon(Icons.home), text: Text('Home')),
-    NavigationItem(icon: Icon(Icons.favorite_border), text: Text('Favourites')),
-    NavigationItem(icon: Icon(Icons.search), text: Text('Search')),
-    NavigationItem(icon: Icon(Icons.person_outline), text: Text('Profile')),
+    NavigationItem(icon: Icon(Icons.home), text: Text('Home'), color: Colors.deepPurple),
+    NavigationItem(icon: Icon(Icons.favorite_border), text: Text('Favourites'), color: Colors.amber),
+    NavigationItem(icon: Icon(Icons.search), text: Text('Search'), color: Colors.blue),
+    NavigationItem(icon: Icon(Icons.person_outline), text: Text('Profile'), color: Colors.pink),
   ];
 
   Widget _buildNavigationItem(NavigationItem item, bool isSelected) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
       height: double.maxFinite,
-      width: isSelected? 125: 50,
+      width: MediaQuery.of(context).orientation == Orientation.portrait? isSelected? 125: 50: isSelected? 200: 100,
       decoration: isSelected? BoxDecoration(
-        color: isSelected? _selectedIndexColor: _backgroundColor,
+        color: isSelected? item.color: _backgroundColor,
         borderRadius: BorderRadius.circular(50)
       ): null,
       padding: isSelected? EdgeInsets.only(left: 16, right: 16): null,
@@ -60,6 +58,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: 62,
       padding: EdgeInsets.all(8),
@@ -93,5 +92,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 class NavigationItem {
   Icon icon;
   Text text;
-  NavigationItem({this.icon, this.text});
+  Color color;
+  NavigationItem({this.icon, this.text, this.color});
 }
