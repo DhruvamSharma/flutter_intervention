@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gamezop_mock/bloc.dart';
-import 'package:gamezop_mock/bottom_navigation_bar.dart';
+import 'package:gamezop_mock/ui/home_screen/bloc.dart';
+import 'package:gamezop_mock/common/bottom_navigation_bar.dart';
+import 'package:gamezop_mock/ui/home_screen/game_screen.dart';
 import 'package:gamezop_mock/utils/Colors.dart';
 void main() => runApp(MyApp());
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: true,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -23,6 +25,9 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: colorCustom,
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
       ),
       home: MyHomePage(title: ''),
     );
@@ -66,7 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
         stream: bloc.bottomNavigationIndexStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Center(child: Text(" ${snapshot.data}"));
+            switch(snapshot.data) {
+              case 0: return GameScreen();
+              default: return Center(child: Text('${snapshot.data}'));
+            }
           } else {
             return Center(
               child: Text('Loading...'),

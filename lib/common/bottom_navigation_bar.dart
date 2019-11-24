@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamezop_mock/bloc.dart';
+import 'package:gamezop_mock/ui/home_screen/bloc.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   @override
@@ -33,7 +33,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              IconTheme(
+              IconTheme.merge(
                   data: IconThemeData(
                       color: isSelected? _backgroundColor: Colors.black,
                       size: 24),
@@ -57,12 +57,17 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      decoration: BoxDecoration(
+        color: _backgroundColor,
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+        boxShadow: List<BoxShadow>()
+      ),
+      duration: Duration(seconds: 1),
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: 62,
       padding: EdgeInsets.all(8),
-      color: _backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: _navigationItems.map((it) {
