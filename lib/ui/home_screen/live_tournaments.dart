@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gamezop_mock/ui/game_detail_screen/game_detail_screen.dart';
 
 class LiveTournaments extends StatefulWidget {
   final List<String> images;
@@ -52,9 +53,20 @@ class _LiveTournamentsState extends State<LiveTournaments> {
   }
 
   Widget buildTournamentCard(int position) {
-    return Card(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Image.asset(widget.images[position], fit: BoxFit.cover,)
+    return GestureDetector(
+      onTap: () {onGameTap('${widget.images[position]} $position', widget.images[position]);},
+      child: Card(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Hero(
+          tag: '${widget.images[position]} $position',
+          child: Image.asset(widget.images[position], fit: BoxFit.cover,),)
+      ),
     );
+  }
+
+  void onGameTap(String heroTag, String cover) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return GameDetailScreen(heroTag: heroTag, image: cover);
+    }));
   }
 }

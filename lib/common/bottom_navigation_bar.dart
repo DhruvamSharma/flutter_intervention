@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gamezop_mock/ui/home_screen/bloc.dart';
+import 'package:gamezop_mock/utils/Colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   @override
@@ -11,10 +12,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _index = 0;
   Color _backgroundColor = Colors.white;
   List<NavigationItem> _navigationItems = <NavigationItem> [
-    NavigationItem(icon: Icon(Icons.home), text: Text('Home'), color: Colors.deepPurple),
-    NavigationItem(icon: Icon(Icons.favorite_border), text: Text('Favourites'), color: Colors.amber),
-    NavigationItem(icon: Icon(Icons.search), text: Text('Search'), color: Colors.blue),
-    NavigationItem(icon: Icon(Icons.person_outline), text: Text('Profile'), color: Colors.pink),
+    NavigationItem(icon: Icon(Icons.home), text: Text('Home'), color: primaryColor),
+    NavigationItem(icon: Icon(Icons.favorite_border), text: Text('Favourites'), color: primaryColor),
+    NavigationItem(icon: Icon(Icons.search), text: Text('Search'), color: primaryColor),
+    NavigationItem(icon: Icon(Icons.person_outline), text: Text('Profile'), color: primaryColor),
   ];
 
   Widget _buildNavigationItem(NavigationItem item, bool isSelected) {
