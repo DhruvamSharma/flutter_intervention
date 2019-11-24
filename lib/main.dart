@@ -26,8 +26,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: colorCustom,
         iconTheme: IconThemeData(
-          color: Colors.white
+          color: Colors.black
         ),
+        scaffoldBackgroundColor: Colors.white
       ),
       home: MyHomePage(title: ''),
     );
@@ -65,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       key: _scaffoldKey,
-
       bottomNavigationBar: CustomBottomNavigationBar(),
       body: StreamBuilder<int>(
         stream: bloc.bottomNavigationIndexStream,

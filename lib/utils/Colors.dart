@@ -17,3 +17,5 @@ Map<int, Color> color =
 MaterialColor getColor(int primary) {
   return MaterialColor(primary, color);
 }
+
+Color primaryColor = getColor(0xFF3e51b5);
