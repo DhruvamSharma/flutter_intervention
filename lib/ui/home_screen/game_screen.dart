@@ -3,6 +3,8 @@ import 'live_tournaments.dart';
 import 'package:gamezop_mock/ui/home_screen/featured_game_corousel.dart';
 
 class GameScreen extends StatefulWidget {
+  const GameScreen();
+
   @override
   _GameScreenState createState() => _GameScreenState();
 }

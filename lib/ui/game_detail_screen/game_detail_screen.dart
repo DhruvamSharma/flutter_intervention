@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gamezop_mock/ui/common/divider.dart';
 import 'package:gamezop_mock/utils/Colors.dart';
 
 class GameDetailScreen extends StatefulWidget {
@@ -157,14 +158,7 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                                     ),
                                   ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: 0.2,
-                                    height: MediaQuery.of(context).size.height / 14,
-                                    decoration: BoxDecoration(color: Colors.grey),
-                                  ),
-                                ),
+                                CustomVerticalDivider(height: MediaQuery.of(context).size.height / 14, color: Colors.grey),
                                 Column(
                                   children: <Widget>[
                                     Text(
@@ -207,11 +201,7 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                               max: 200,
                             ),
 
-                            Container(
-                              height: 0.2,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(color: Colors.grey),
-                            ),
+                            CustomHorizontalDivider(width: MediaQuery.of(context).size.width, color: Colors.grey),
 
                             Padding(
                               padding: const EdgeInsets.only(
