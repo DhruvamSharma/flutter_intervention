@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gamezop_mock/ui/favourites_screen/favourites_screen.dart';
-import 'package:gamezop_mock/ui/home_screen/bloc.dart';
-import 'package:gamezop_mock/common/bottom_navigation_bar.dart';
+import 'package:gamezop_mock/ui/bloc.dart';
+import 'package:gamezop_mock/ui/common/bottom_navigation_bar.dart';
 import 'package:gamezop_mock/ui/home_screen/game_screen.dart';
+import 'package:gamezop_mock/ui/profile_screen/profile_screen.dart';
 import 'package:gamezop_mock/utils/Colors.dart';
 void main() => runApp(MyApp());
 
@@ -73,9 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             switch(snapshot.data) {
-              case 0: return GameScreen();
-              case 1: return FavouritesScreen();
-              default: return Center(child: Text('${snapshot.data}'));
+              case 0: return const GameScreen();
+              case 1: return const FavouritesScreen();
+              case 3: return const ProfileScreen();
+              default: return Center(child: Text('Not Available in this release'));
             }
           } else {
             return Center(

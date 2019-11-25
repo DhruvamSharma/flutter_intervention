@@ -6,7 +6,6 @@ class _Bloc {
   final _bottomNavigationIndexStreamController = BehaviorSubject<int>();
 
   void updateIndex(int newIndex) {
-    print(newIndex);
     _bottomNavigationIndexStreamController.sink.add(newIndex);
   }
 

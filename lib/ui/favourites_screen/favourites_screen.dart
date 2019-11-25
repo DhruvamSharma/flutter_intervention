@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gamezop_mock/ui/bloc.dart';
 import 'package:gamezop_mock/ui/game_detail_screen/game_detail_screen.dart';
 import 'package:gamezop_mock/utils/Colors.dart';
 
 class FavouritesScreen extends StatefulWidget {
+  const FavouritesScreen();
   @override
   _FavouritesScreenState createState() => _FavouritesScreenState();
 }
@@ -64,7 +66,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 48),
-            child: Image.network('https://image4.owler.com/logo/gamezop1_owler_20190512_114038_original.png', width: MediaQuery.of(context).size.width/3,),
+            child: GestureDetector(
+              onTap: () {bloc.updateIndex(0);},
+                child: Image.network('https://image4.owler.com/logo/gamezop1_owler_20190512_114038_original.png', width: MediaQuery.of(context).size.width/3,)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamezop_mock/ui/home_screen/bloc.dart';
+import 'package:gamezop_mock/ui/bloc.dart';
 import 'package:gamezop_mock/utils/Colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
