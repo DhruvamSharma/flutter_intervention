@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gamezop_mock/ui/favourites_screen/favourites_screen.dart';
 import 'package:gamezop_mock/ui/home_screen/bloc.dart';
 import 'package:gamezop_mock/common/bottom_navigation_bar.dart';
 import 'package:gamezop_mock/ui/home_screen/game_screen.dart';
@@ -73,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           if (snapshot.hasData) {
             switch(snapshot.data) {
               case 0: return GameScreen();
+              case 1: return FavouritesScreen();
               default: return Center(child: Text('${snapshot.data}'));
             }
           } else {
