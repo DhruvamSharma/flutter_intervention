@@ -81,201 +81,214 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                     ),
+
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))
+                  ),
+                  child: Column(
                     children: <Widget>[
-                      DefaultTextStyle.merge(
-                        style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        child: Text(
-                          'Sticky Goo',
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            DefaultTextStyle.merge(
+                              style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                              child: Text(
+                                'Sticky Goo',
+                              ),
+                            ),
+                            IconButton(
+                                icon: Icon(_isLiked
+                                    ? Icons.favorite
+                                    : Icons.favorite_border),
+                                color: _isLiked ? primaryColor : null,
+                                onPressed: () {
+                                  print('here');
+                                  setState(() {
+                                    print("clicked");
+                                    _isLiked = !_isLiked;
+                                  });
+                                }),
+                          ],
                         ),
                       ),
-                      IconButton(
-                          icon: Icon(_isLiked
-                              ? Icons.favorite
-                              : Icons.favorite_border),
-                          color: _isLiked ? primaryColor : null,
-                          onPressed: () {
-                            print('here');
-                            setState(() {
-                              print("clicked");
-                              _isLiked = !_isLiked;
-                            });
-                          }),
-                    ],
-                  ),
-                ),
-                Card(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // Header of the card
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                'PLAYERS',
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(Icons.person_outline),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '22/200',
+                      Card(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            // Header of the card
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    Text(
+                                      'PLAYERS',
                                       style: TextStyle(
+                                          color: Colors.grey,
                                           fontWeight: FontWeight.bold),
                                     ),
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(Icons.person_outline),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '${_currentRating.round()}/200',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: 0.2,
+                                    height: MediaQuery.of(context).size.height / 14,
+                                    decoration: BoxDecoration(color: Colors.grey),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 0.2,
-                              height: MediaQuery.of(context).size.height / 14,
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    Text(
+                                      'PLAYERS',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(Icons.person_outline),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            '22/200',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            Slider.adaptive(
+                              value: _currentRating,
+                              onChanged: (newRating) {
+                                setState(() => _currentRating = newRating);
+                              },
+                              label: '${_currentRating.round()}',
+                              min: 0,
+                              activeColor: Colors.amber,
+                              max: 200,
+                            ),
+
+                            Container(
+                              height: 0.2,
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(color: Colors.grey),
                             ),
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                'PLAYERS',
+
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 32.0, right: 32.0, top: 8.0, bottom: 16),
+                              child: Text(
+                                'Prize breakup for ${_currentRating.round()} Players',
                                 style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.bold, color: Colors.grey),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 32.0, right: 32.0, top: 8.0, bottom: 16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(Icons.person_outline),
+                                  Text(
+                                    'Ranks 1-8',
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '22/200',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Text(
+                                    '12',
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-
-                      Slider.adaptive(
-                        value: _currentRating,
-                        onChanged: (newRating) {
-                          setState(() => _currentRating = newRating);
-                        },
-                        label: '${_currentRating.round()}',
-                        min: 0,
-                        activeColor: Colors.amber,
-                        max: 200,
-                      ),
-
-                      Container(
-                        height: 0.2,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(color: Colors.grey),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 32.0, right: 32.0, top: 8.0, bottom: 16),
-                        child: Text(
-                          'Prize breakup for ${_currentRating.round()} Players',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.grey),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 32.0, right: 32.0, top: 8.0, bottom: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Ranks 1-8',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              '12',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 32.0, right: 32.0, top: 8.0, bottom: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Ranks 9-21',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 32.0, right: 32.0, top: 8.0, bottom: 16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'Ranks 9-21',
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    '12',
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text(
-                              '12',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 32.0, right: 32.0, top: 8.0, bottom: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Ranks 22-54',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              '12',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 32.0, right: 32.0, top: 8.0, bottom: 16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'Ranks 22-54',
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    '12',
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                ),
+                )
+
               ],
             ),
           ),
